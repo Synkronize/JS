@@ -134,9 +134,10 @@ Say you have a condition fail, and want to trigger another condition check if th
 		
 	}
 ```
-
-There is also the `switch(value)` statement you can use this if you don't want to write a bunch of `else if`. It will try to match the value that was given to the switch with a ` case (value)` .
 Keep in mind if the first `if` statement is true, then none of the other `else statements` will run. So its one or the other. Same case with `else if` if it succeeds then, the rest of the `else if` checks or `else` checks will not execute. 
+### Switch
+There is also the `switch(value)` statement you can use this if you don't want to write a bunch of `else if`. It will try to match the value that was given to the switch with a ` case (value)` .
+
 
 
 ```javascript
