@@ -110,8 +110,62 @@ when we say ` let ten` what is happening? The explanation im giving is very simp
 ## Functions
 When we execute a function its usually called "calling" I've never heard other terms but the book says "invoking" and also "applying" .
 Functions are pretty much a bunch of statements wrapped up in a bundle and then given a name. A function "does" something. A function can give you back something, but that depends on what you're trying to do (see above when I talked about the "void" type). If you like math comparisons, functions are similar to math functions like: f(x) = x + 5 etc, the function takes in x, and returns one value, that value is x + 5. A function cannot return more than 1 value, its true, but misleading,  1 value can mean many things. This will be explained with Arrays and what not. 
-The variables that a function can accept are called parameters (also can be called arguments). ` petCat(name, catLocation, whereToPetCat)` Here name, catLocation, and whereToPetCat are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it. 
+The variables that a function can accept are called parameters (also can be called arguments). ` petCat(name, catLocation, whereToPetCat)` Here name, catLocation, and whereToPetCat are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it.
 
+You can also use functions that produce values as expressions, say you have `isPetCute(petName)` and it returns true or false then you can say `if(isPetCute(petName))` and the if statement will react according to whatever value the `isPetCute` function returns. You can also do:
+```javascript
+	let x = isPetCute("Curie"); // so this returns true meaning x = true
+	//although that is different from this:
+	let y = isPetCute; // You are now saying y contains the isPetCute function which means you can do...
+	let z = y("Curie"); // this would return true, meaning z = true. 
+```
+## Control flow
+So code usually runs top to bottom. To make it branch and make the flow more flexible we use if statements and loops. 
+### Conditionals
+`if(condition)` keep in mind, 0 is also equivalent to false, and 1 is equivalent to true, also `undefined` evaluates to false. So you can check if a variable exists/has a value by saying `if(!value)` "!" means negate / not, so this would read "if value is **not undefined** (it is defined)"
 
+Say you have a condition fail, and want to trigger another condition check if the first one fails. This is possible using `else if(condition)` you can chain as many else's as you want. The last else will be just `else` and not `else if`
+```javascript
+	if(isHappy) {}
+	else if(isSad) {}
+	else if(isSleepy) {}
+	else {
+		
+	}
+```
+Keep in mind if the first `if` statement is true, then none of the other `else statements` will run. So its one or the other. Same case with `else if` if it succeeds then, the rest of the `else if` checks or `else` checks will not execute. 
+### Loops
+There are 4 types of loops you'll probably use. 
+- for loops
+	- has a structure `for(let i = 0; i < 10; i = i + 1)` I like to remember it as starting point, condition to check to see if look keeps going, and what to do at the end of every loop.  Only the first two parts require semicolons. 
+	- ```javascript
+		for( let i = 0; i < 10; i = i + 1) {
+			if(i = 5) {
+				break; // say you have a for loop that you dont always want it to run all the way through, you can use break;  to exit the loop.
+			}
+		}
+	 ``` 
+- while loops
+	- basically just keeps running a loop while the condition is true.
+	- ```javascript
+	  while(petIsHungry) {
+		feedPet();
+	  } 
+	
+	  ```
+	- **IMPORTANT** when you create a while loop, always think about how to prevent a infinite loop first. As the while loop will check the condition on every loop so within the loop you will need to have code that either escapes the loop by making the condition of the while loop become false, or by using the `break;` statement.
+- do..while loops
+	- I rarely use this loop, but this loop is the same as the while loop, but the main difference is the loop will run atleast 1 time, and the condition is checked everytime at the end of the loop before it starts again.
+	- ```javascript
+		do {
+			feedPet();
+		} while(petIsHungry);
+	 ```
+	- Same important warning as above, but make sure to keep in mind that the condition is checked at the end. 
+- .forEach() loops
+	- this one will be explained later.
+- for x in z loops
+	- also explained later
 
+Keep in mind with the `break` command, that if you have nested loops it will  works only on its nearest loop. If it is in the inner-most loop then using `break;` will cancel the innermost loop. The parent loop of that loop will still run. But if you use `break;` on the parent loop then the parent loop will stop and that also means the child loop will not run. 
 
