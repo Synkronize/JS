@@ -16,6 +16,9 @@ void doSomething() {
 	int a;
 	int b;
 	int finalValue;
+	// small note, I was taught that it helps to remember the "=" sign when assigning as meaning "gets"
+	// a gets 5, b gets 2
+	// double equal == is the actual equal sign.
 	a = 5;
 	b = 2;
 	finalValue = a + b;
@@ -59,6 +62,40 @@ doSomething(): number {
 
 ```
 
-All three of these examples do the same thing and all are procedural code snippets. 
+All three of these examples do the same thing and all are procedural code snippets. Procedural code can be pretty hard to work with which is why we have OOP, OOP is basically instead focusing on coding using objects, that have properties and their own set of functions then we can code them in a more natural way. It's kind of hard to explain it'll make more sense when we get there. For now just picture that you could have a "Bearded Dragon object"
+It would be able to have properties in it like color, sex, personality etc.  Also have its  own functions like, "fightWaterKy (or is it Kai?), eatFood(), etc. OOP helps us build things by letting us think of them as real world physical things.
+
+## Javascript is also a functional programing language
+https://www.telerik.com/blogs/functional-programming-javascript#:~:text=Functions%20in%20JavaScript%20are%20first,the%20same%20way%20as%20variables.&text=Functions%20in%20JavaScript%20are%20objects,back%20to%20their%20constructor%20function.
+Honestly this article can explain it better than I can, its kinda something you end up just doing. I've never had some one ask me to "functional program something".  Let me know if you have any questions!
+# Program Structure
+A line of code is called a statement, what the statement contains is usually called an expression.  So like "words" (expression) in a "sentence" (statement).
+## Binding values
+I was taught special wording, for binding values so maybe it could help. When you create a variable but don't give it a value (like the variable here "five") that is called "declaring". When you create a variable and give it a value, it is called "initializing" (But I guess you also decalred it?). All semantics though, binding, assigning, and initializing are all pretty much the same thing.
+
+```javascript
+let five;
+let ten = 10;
+```
+and for typescript
+```typescript
+let five: number;
+let ten: number = 10;
+```
+There is also "var" along with "let" and "const"
+- var
+	- not really used any more and is nearly the same as "let"
+		- the difference is that a variable defined with "let" will only exist in the scope that is part of, while var are availiable throughout the function that they were declared in.
+		- ```
+		  function test() {
+			if (true) {
+					var x = 5;
+				}
+				console.log(x)
+		  }
+		  ```
+			- So in this example, even though "var x" was declared inside the scope (brackets) of the if statement, then it will still exist even when the if statment ends, it will be destroyed when the function finishes. While if we used the "let x" then the variable would be destroyed as soon as the if statement ends.
+
+
 
 
