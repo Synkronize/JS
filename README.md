@@ -99,18 +99,18 @@ There is also "var" along with "let" and "const"
 	- same as var but the scope of the variable is tied to the scope it was created in, while the scope for a var is the entire function.
 - const
 	- When you create a const variable it MUST be initialized, you'll get an error if you don't. A const variable cannot be reassigned. But you can still use it to assign values to other variables.
-	-```javascript
-	 const x; // ILLEGAL! it needs to be defined when you create it if its constant!!!
-	 const y = 5; // all good :)
-	 const y = 10; // ILLEGAL! It's already sent to 5 it cannot be changed (semantics note: when things cant be changed they are called "immutable", the opposite would be called "mutable")
-	 const z = y // this is ok we aren't changing Y's value.
-	 ```
+	- ```javascript
+	  const x; // ILLEGAL! it needs to be defined when you create it if its constant!!!
+	  const y = 5; // all good :)
+	  const y = 10; // ILLEGAL! It's already sent to 5 it cannot be changed (semantics note: when things cant be changed they are called "immutable", the opposite would be called "mutable")
+	  const z = y // this is ok we aren't changing Y's value.
+	  ```
 ### Whats happening under the hood?
-when we say `javascript let ten` what is happening? The explanation im giving is very simplified but its the gist of it. When programs run, they run in the memory (RAM) of the computer. Thats where they live their life. When you create the variable x, a space in memory is allocated to that variable and placed in that space of memory is the value 10. This is like  walking down the street and looking at a house #. When you say the address of a house is 42 Wallaby Way, the 42 is the "value" in that address. Although this explanation is not taking into account things like pointers and references. But we will get to that in the OOP section.
+when we say ` let ten` what is happening? The explanation im giving is very simplified but its the gist of it. When programs run, they run in the memory (RAM) of the computer. Thats where they live their life. When you create the variable x, a space in memory is allocated to that variable and placed in that space of memory is the value 10. This is like  walking down the street and looking at a house #. When you say the address of a house is 42 Wallaby Way, the 42 is the "value" in that address. Although this explanation is not taking into account things like pointers and references. But we will get to that in the OOP section.
 ## Functions
 When we execute a function its usually called "calling" I've never heard other terms but the book says "invoking" and also "applying" .
 Functions are pretty much a bunch of statements wrapped up in a bundle and then given a name. A function "does" something. A function can give you back something, but that depends on what you're trying to do (see above when I talked about the "void" type). If you like math comparisons, functions are similar to math functions like: f(x) = x + 5 etc, the function takes in x, and returns one value, that value is x + 5. A function cannot return more than 1 value, its true, but misleading,  1 value can mean many things. This will be explained with Arrays and what not. 
-The variables that a function can accept are called parameters (also can be called arguments). `javascript petCat(name, catLocation, whereToPetCat)` Here name, catLocation, and whereToPetCat are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `javascript petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it. 
+The variables that a function can accept are called parameters (also can be called arguments). ` petCat(name, catLocation, whereToPetCat)` Here name, catLocation, and whereToPetCat are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `javascript petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it. 
 
 
 
