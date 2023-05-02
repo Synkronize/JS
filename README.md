@@ -125,6 +125,7 @@ So code usually runs top to bottom. To make it branch and make the flow more fle
 `if(condition)` keep in mind, 0 is also equivalent to false, and 1 is equivalent to true, also `undefined` evaluates to false. So you can check if a variable exists/has a value by saying `if(!value)` "!" means negate / not, so this would read "if value is **not undefined** (it is defined)"
 
 Say you have a condition fail, and want to trigger another condition check if the first one fails. This is possible using `else if(condition)` you can chain as many else's as you want. The last else will be just `else` and not `else if`
+
 ```javascript
 	if(isHappy) {}
 	else if(isSad) {}
@@ -133,15 +134,52 @@ Say you have a condition fail, and want to trigger another condition check if th
 		
 	}
 ```
+
+There is also the `switch(value)` statement you can use this if you don't want to write a bunch of `else if`. It will try to match the value that was given to the switch with a ` case (value)` .
 Keep in mind if the first `if` statement is true, then none of the other `else statements` will run. So its one or the other. Same case with `else if` if it succeeds then, the rest of the `else if` checks or `else` checks will not execute. 
+
+
+```javascript
+	switch(favoriteColor) {
+		case "red":
+		case "blue":
+			doSomething();
+		case "green:"
+			doSomething2();
+		default:
+			doSomething3();
+	}
+	
+```
+
+In this example, if the user passes in "blue" to the switch statement, then `case "blue"` will execute the code it contains. But also it `case "green"` and `default` will run their code too! How do we prevent this? you use the `break` command to stop this behavior.
+
+```javascript
+	switch(favoriteColor) {
+		case "red":
+			break;
+		case "blue":
+			doSomething();
+			break;
+		case "green:"
+			doSomething2();
+			break;
+		default:
+			doSomething3();
+	}
+```
+So here the only code that would run is the code under `case "blue"` because "blue" was passsed in, and the `break` command will basically stop the switch statement from executing any case that comes after `case "blue"`	
 ### Loops
-There are 4 types of loops you'll probably use. 
+There are 5 types of loops you'll probably use. Also if you're ever tired of typing `i = i+1`  you can use `i += 1` they mean the same thing, there is also `*=` (multiplication) `/=` (division) `+=` (add) `-` (subtract) `%=` (modulous) 
 - for loops
 	- has a structure `for(let i = 0; i < 10; i = i + 1)` I like to remember it as starting point, condition to check to see if look keeps going, and what to do at the end of every loop.  Only the first two parts require semicolons. 
 	- ```javascript
 		for( let i = 0; i < 10; i = i + 1) {
 			if(i = 5) {
 				break; // say you have a for loop that you dont always want it to run all the way through, you can use break;  to exit the loop.
+			}
+			else if (i % 2 == 0) (This tests if a number is even) {
+				continue; // continue will immediately start the next iteration of the loop. So the continue command is explicitly stating "end of current iteration, go next"
 			}
 		}
 	 ``` 
@@ -167,5 +205,6 @@ There are 4 types of loops you'll probably use.
 - for x in z loops
 	- also explained later
 
-Keep in mind with the `break` command, that if you have nested loops it will  works only on its nearest loop. If it is in the inner-most loop then using `break;` will cancel the innermost loop. The parent loop of that loop will still run. But if you use `break;` on the parent loop then the parent loop will stop and that also means the child loop will not run. 
+Keep in mind with the `break` command, that if you have nested loops it will  work only on its nearest loop. If it is in the inner-most loop then using `break;` will cancel the innermost loop. The parent loop of that loop will still run. But if you use `break;` on the parent loop then the parent loop will stop and that also means the child loop will not run. While the `continue` command will move you to the next iteration of your loop, its useful for when you found something you're looking for and don't care about the rest of your loop code, just go to the next iteration of the loop to continue looking for more. 
+
 
