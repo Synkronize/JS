@@ -8,8 +8,11 @@ Javascript (no relation to Java) is a very popular programming language for buil
 The best way I can explain this is that, when I learned coding my first language was C which was created in 1973. So C is a procedural language, as I was taught  but im sure there are many small changes and updates to it since then that allows it to be closer to an OOP. But as I learned it, it was strictually procedural. Procedural just means that the code runs in line order.  For example in C say I wrote a small function that adds numbers and then divide the sum and checks that the divisor is not 0:
 ```
 void doSomething() { 
-// "void" stands for a return type, in languages that have variable typing then your function can also have a type. If you specify a type then the function MUST return (give-back, when its done running) a value that matches the type it was defined with.  This function has type "void" so it returns nothing, and will not need a return statement.
-//int is a variable type, here I am specifying that the variable "a" is an integer and that what we expect it to hold is a number.
+/** "void" stands for a return type, in languages that have variable typing then your function can also have a type. 
+If you specify a type then the function MUST return (give-back, when its done running)
+ a value that matches the type it was defined with.  
+This function has type "void" so it returns nothing, and will not need a return statement.
+int is a variable type, here I am specifying that the variable "a" is an integer and that what we expect it to hold is a number. **/
 	int a;
 	int b;
 	int finalValue;
@@ -17,7 +20,8 @@ void doSomething() {
 	b = 2;
 	finalValue = a + b;
 	if (b != 0) {
-		// I forget if C has the shorthand but you can also do finalValue /= b (works with others like +, *, etc)
+		// I forget if C has the shorthand.
+		//But you can also do finalValue /= b (works with others like +, *, etc)
 		finalValue = finalValue / b
 	}	
 	
@@ -41,7 +45,7 @@ function doSomething() {
 and in TypeScript:
 
 ```
-// i'll make this one return a value just to show the typing of the function since TypeScript has typing.
+// I'll make this one return a value just to show the typing of the function since TypeScript has typing.
 doSomething(): number {
 	let a: number;
 	let b: number;
