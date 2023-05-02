@@ -6,13 +6,13 @@ Javascript (no relation to Java) is a very popular programming language for buil
 ## Javascript is an Object Oriented Programmming Language (OOP)
 ### What is an Object Oriented Language?
 The best way I can explain this is that, when I learned coding my first language was C which was created in 1973. So C is a procedural language, as I was taught  but im sure there are many small changes and updates to it since then that allows it to be closer to an OOP. But as I learned it, it was strictually procedural. Procedural just means that the code runs in line order.  For example in C say I wrote a small function that adds numbers and then divide the sum and checks that the divisor is not 0:
-```
+```C
 void doSomething() { 
-/** "void" stands for a return type, in languages that have variable typing then your function can also have a type. 
-If you specify a type then the function MUST return (give-back, when its done running)
- a value that matches the type it was defined with.  
-This function has type "void" so it returns nothing, and will not need a return statement.
-int is a variable type, here I am specifying that the variable "a" is an integer and that what we expect it to hold is a number. **/
+// "void" stands for a return type, in languages that have variable typing then your function can also have a type. 
+// you specify a type then the function MUST return (give-back, when its done running)
+// a value that matches the type it was defined with.  
+// This function has type "void" so it returns nothing, and will not need a return statement.
+// int is a variable type, here I am specifying that the variable "a" is an integer and that what we expect it to hold is a number. 
 	int a;
 	int b;
 	int finalValue;
@@ -21,14 +21,14 @@ int is a variable type, here I am specifying that the variable "a" is an integer
 	finalValue = a + b;
 	if (b != 0) {
 		// I forget if C has the shorthand.
-		//But you can also do finalValue /= b (works with others like +, *, etc)
+		// But you can also do finalValue /= b (works with others like +, *, etc)
 		finalValue = finalValue / b
 	}	
 	
 }
 ```
 So here the code in this function will run from the first line (int a) all the way to the end of the function. This is procedural code, I'm pretty sure for the most part every language behaves like this when you're coding as code runes line-by-line usually. But the difference is that this procedural languages (usually the older ones) only ran this way (don't quote me on that lol). But in Javascript if you wrote the same code it would also be procedural:
-```
+```javascript
 function doSomething() {
 	let a;
 	let b;
@@ -44,7 +44,7 @@ function doSomething() {
 
 and in TypeScript:
 
-```
+```typescript
 // I'll make this one return a value just to show the typing of the function since TypeScript has typing.
 doSomething(): number {
 	let a: number;
