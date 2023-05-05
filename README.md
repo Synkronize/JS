@@ -345,7 +345,7 @@ Say you had another class called `Stickers` and you wanted to use that class in 
 You could have a proporty that would be like (in typescript)
 `sticker: Sticker`
 
-or another example, you can define that a variable will be of type `Car`: `thisIsACar: Car = new Car();
+or another example, you can define that a variable will be of type `Car`: `thisIsACar: Car = new Car();`
 ### what the heck does "this" mean?
 "this" refers to the instance of the object itself. Notice how  in the constructor, I use `this.make = make` one of the reasons we use this is because `make = make` makes 0 sense, how do we know what make we're talking about? The one that was passed in? Or the one that belongs to the object? "this" refers to the object itself. Its like saying "yourself" or "me" or "my".
 
