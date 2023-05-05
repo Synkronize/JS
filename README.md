@@ -276,4 +276,235 @@ When to use functions:
 			```
 
 			and we're done, see how much the code shrunk?? Awesome stuff!   
-Remember functions are for automating repetitive work, and loops are for automatically going through lists, or anything that can be iterated through. 
+Remember functions are for automating repetitive work, and loops are for automatically going through lists, or anything that can be iterated through.
+Oh and also remember sicne Javascript is a functional language, functions can be passed in/used anywhere just like do with variables. 
+
+
+# Classes and Objects
+This is one of the most important concepts of programming, and it is what makes some languages "Object Oriented".
+
+## What is a class?
+A class is like the blueprint or framework of some type of concept or thing you are trying to represent in code.
+Im skimming through some of this but it will help to research how classes work. 
+For example, lets use a car as an example.
+
+Every car has what?
+- make
+- model
+- year
+- moving
+- on
+- The **ABILITY** to move
+- The **ABILITY**  to brake
+- The **ABILITY**  to turn on and off.
+of course cars have much more to them than this, but this is sufficient for our example.
+
+With this blueprint you can make as many cars as you want, every car will have these properties. 
+`make`, `model`, `year`, `moving`, and `on` are all just data these would be called properties/attributues/fields of the class, all of 3 of those words are appropriate.
+
+
+Now moving, braking, and turning on and off are things the car can **DO**. These are called methods. Methods are just another name for functions, they are called methods because they belong to the class CAR, only the CAR class can use these methods. Methods can also return values just like functions.
+
+What does this look like in code? For this example im going to use Typescript because im more use to that and it should still be readable, some of the syntax may be slightly different in JS but thats just a quick google away.
+
+Also note that a class effectively becomes a type that you can use
+
+```typescript
+	class Car {
+		make: string;
+		model: string;
+		year: number;
+		moving: bool; // you can also do moving: bool = false so you don't have to set it in the constructor. 
+		on: bool;
+		constructor(make: string, model: string, year: number){
+			this.make = make;
+			this.model = model;
+			this.year = year;
+			this.moving = false;
+			this.on = false;
+		}
+		move(): void {
+			this.moving = true;
+		}
+		brake(): void {
+			this.moving = false;
+		}
+		turnOn(): void {
+			this.on = true;
+		}
+		turnOff(): void {
+			this.on = False;
+		}
+		
+	}
+```
+Also note that a class effectively becomes a type that you can use
+
+Say you had another class called `Stickers` and you wanted to use that class in your `class Car`
+
+You could have a proporty that would be like (in typescript)
+`sticker: Sticker`
+
+or another example, you can define that a variable will be of type `Car`: `thisIsACar: Car = new Car();
+### what the heck does "this" mean?
+"this" refers to the instance of the object itself. Notice how  in the constructor, I use `this.make = make` one of the reasons we use this is because `make = make` makes 0 sense, how do we know what make we're talking about? The one that was passed in? Or the one that belongs to the object? "this" refers to the object itself. Its like saying "yourself" or "me" or "my".
+
+## Objects
+Notice how above in the class definition we have the `constructor` function. This function does exactly what it says, it constructs a car object. How do we call the constructor?
+Now that we know what a Class definition looks like how do we create Cars?
+```typescript
+	let car = new Car('Honda', 'Civic', '2000'); // this is called instantiating an object. You have created an "instance" of an object
+```
+
+Each object you create (so if u made multiple Cars) have their own independent versions of their properties. One car can be off, and another can be on after all, just like real life. 
+
+
+You can also have multiple constructors, this is called overloading so you can create different constructors that createa  car object using different types of data passed in if the constructor above is not sufficient.
+
+We can access the properties of a car object by using `.`.
+
+```typescript
+console.log(car.make);
+console.log(car.moving); //moving would be false here due to the constructor.
+car.move();
+console.log(car.moving); // moving would be true here due to the move method.
+
+```
+
+Theres more to objects but this is the basics.
+
+### Quick note about Objects
+Remember the section above about whats happening under the hood? It helps to know whats happening under the hood for objects.
+
+When you do `let car = new Car('Honda', 'Civic', '2000');` The object is instantiated. Unlike primitive variables (basic numbers, basic strings, basic booleans) the car variable does not contain the object. The Object is created in a random spot of memory in the computer and the variable ***POINTS*** to that spot in memory.  Thats kinda why you use `car.on` `car` tells the computer where the object is, and `.on()` is actually accessing that method. 
+This means if you have two objects `car` and `car2` and you say `car = car2` you are ***NOT*** copying `car2` into `car` (unless you overload the operator google that one its wild). Whats actually happening is you are saying the `car` variable no longer points to what ever `car` was pointing at. It now points to whatever `car2` points at. This means that `car` and `car2` have the same ***EXACT*** value, they both point to 1 object in memory.
+
+This is useful tot hink about when working on the LinkedList problems below.
+### Static property
+
+say we added an extra property to our car class called:
+
+```typscript
+static recall: boolean;
+```
+static means that the variable is tied to the class ***NOT*** the instance of the Object.  This means that every object you create shares only 1 version of this variable. 
+If `recall = true` then every Car object you instantiate would have recall = true as their property.
+## Inheritance
+We have a car class, but a car class is too vague, we have SUV's, Trucks, Sedans, etc. These are all cars but are different types. They all share the same characteristics of `Car` but also do more. 
+
+You can extend classes to create subclasses by doing: 
+
+```typescript
+	class SUV extends Car {
+		
+	}
+```
+
+Honestly, this page explains it better than I can but let me know if you have questions 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+Make sure to understand super(). Internet will explain that better than I could, but also lmk if you have questions about it.
+
+
+### private/public/protected
+you may see variables labeld private, protected, public not sure if Javascript uses all of these but in various programming languages you learn, you may see these.
+
+- private: 
+	- if a variable/function is marked private, then you cannot use `.` to access the value of the variable or function. If `on` was private then you could not say `Car.on`, this helps make sure that you don't assign the `on` variable to some weird value that is unexpected in your code. It is good coding practice to use private when needed. You can set or get the properties of the object by adding getters and setter methods in the class definition.
+	- Also the variable can only be used in it's class and not any subclasses if marked as private
+```typescript
+	getOn(): boolean {
+		return this.on;
+	}
+	setOn(on: boolean): void {
+		this.on = on;
+	}
+```
+- protected
+	- same as private but subclasses have access.
+- public
+	- is the default, the access is open and not restricted.
+	
+### Polymorphism
+Useful concept to know this basically means that if you have a subclass then anywhere that the parent class is used, you can use the subclass instead, because every SUV is a Car, but not every Car is an SUV get it?  I think when you do this though, the subclass will get converted into its parent class so I don't think you can use the subclasses methods/properties but I may be wrong on this!
+
+
+# Certain things are already classes/objects in Javascript
+In Javascript Arrays are already classes `let arr = [1,2,3]` is an object and thus has useful methods that you can access.  
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+
+This is where .forEach comes into play
+You can do `arr.forEach(() => {});` to loop through each element in the array, the argument that forEach acceepts is a function (proper term is "***callback***" function). This basically means that when u use `.forEach` you can pass in a function that will do whatver you want with each value in the array.
+
+Example:
+
+```javascript
+let arr = [1,2,3]
+arr.forEach((number) => { // what ever element of the array that forEach is on will be passed in as the first parameter to the function that you pass into forEach.
+	if(number % 2 === 0) {
+		console.log(true);
+	}
+	else {
+		console.log(false);
+	}
+});
+
+// or say I take the isEven function from previous example.
+
+arr.forEach(isEven(number)); is also valid.
+```
+Keep in mind .forEach iterates over the array, you cannot change the array in the `.forEach` function because that would mess up the structure. You'll get an error. You can copy the array and then make changes if you want to do something like that. Also `.forEach` cannot be cancelled (if you already found/finished what you needed) instead you can use `.some()` instead https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+`.some()` will stop looping once the callback function **returns** a truthy value (boolean, or 1 I guess or anything else that would evaluate to true).
+
+# Challenge problems
+I think with above information you should be able to take on these problems below these challenges will build your coding fundamentals, and may be useful sometimes. 
+
+1. Using an array [1,2,3,4,5,6] use a loop to create a copy of this array. Store the copy in another variable, without using `.push()` You can also this problem again and use `.push()` and other methods
+2. With the same array above, use a loop to reverse the array.
+3. Make an array that is not sorted, think about the simpelest way you can sort the array so that the numbers are in order. Use a loop to do this, you can look up some simple sorting algorithms like bubblesort and insertion sort, but try to really understand what they are doing.
+4. Make two arrays and use a loops to join them.
+5. Make an array with duplicates and remove the duplicates.
+
+# Linked List Problems
+A Linked List is similar to an array but it works completely different, but I think in most modern languages arrays are linked lists or atleast modified ones.
+
+Try to visualize this image:
+You're at a railroad crossing and you see the train going by. The train has multiple carts, all the carts are connected but they are open (so you can look inside of them while you're waiting at the railroad crossing). This is an array, you can go directly to any spot in an array ex: `arr[1] arr[9] arr[500]` you can also start from the start of the train and go to the last cart `arr[0]...arr[x]`.
+
+A linked list on the other hand, the carts would be closed you cannot go directly to them. You must start from the front of train and go where ever you need to. So like 1 -> 2 -> 3 -> 4. But the connectors of the train are re-arrangable by just changing what the connectors are connecting (pointing) to. 
+You can do 2 -> 3 -> 4 -> 1 by making 4 connect to 1, make 2 the new start of the train (head), and 1 connects to now nothing (it is the end of the train, or the trailer).
+
+
+
+Try to think about how you can create a linked list using Classes and their methods.
+You shouldnt need an array to create a Linked List, but your data could be an array if you want. Make the data whatever you want (I reccomend numbers or strings to make it easier)
+
+I'll give you a hint you'll want a class called LinkedList and a separate class called Node  (or whatever you want to name them). Node would be each cart, while LinkedList represents the whole LinkedList structure as a whole.
+
+A Linked List has:
+A `head` (start), a `trailer` (end),  and if you want you can also give it a `size` variable that will help with conditions.
+
+A Node has:
+`data`, and a `next` property (hint: what type would next be? It's gotta be an OBJECT not a primitive type like int, etc, with that in mind and thinking of how a linked list would work, what kind of object would `next` be?)
+
+
+Try to think about what methods each classes would have and what they would look like.
+
+The code is readily availaible online but if you don't want to immediately see the answer just ask me and I'll try to give a hint, you'll have to send the code over tho.
+
+while loops are very useful here, and you'll want to make sure to check for undefined.
+
+After you can create a basic linked list, up the difficulty by trying to create a circular linked list.
+that would look like: 1 -> 2 -> 3 -> 4 -> 1 (loops back to the start)
+
+
+You can then up the difficulty again, by making  a doubly linked list 
+that means you can travel in both directions. Think about how your classes may change!
+1 -> 2 -> 3 -> 4 
+1 <-  2 <-  3 <-4  (this is not two list, this is signifying that they can connect forward and connect backwards)
+
+
+Make sure to think about how connecting and disconnecting works depending on where you are in the list (front, middle, end)
+
+
+If after this you're really thirsting for knowledge and fun and more of a challenge. Then I would reccomend looking up binary trees, but you'll have to understand recursion, and understand what inorder, post order, and preorder traversal is. 
+Heres a good video on recursion: https://www.youtube.com/watch?v=LteNqj4DFD8 (actually idk if its good, its the first thing on utube LOL)
