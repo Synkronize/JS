@@ -110,7 +110,7 @@ when we say ` let ten` what is happening? The explanation im giving is very simp
 ## Functions
 When we execute a function its usually called "calling" I've never heard other terms but the book says "invoking" and also "applying" .
 Functions are pretty much a bunch of statements wrapped up in a bundle and then given a name. A function "does" something. A function can give you back something, but that depends on what you're trying to do (see above when I talked about the "void" type). If you like math comparisons, functions are similar to math functions like: f(x) = x + 5 etc, the function takes in x, and returns one value, that value is x + 5. A function cannot return more than 1 value, its true, but misleading,  1 value can mean many things. This will be explained with Arrays and what not. 
-The variables that a function can accept are called parameters (also can be called arguments). ` petCat(name, catLocation, whereToPetCat)` Here name, catLocation, and whereToPetCat are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it.
+The variables that a function can accept are called parameters (also can be called arguments). ` petCat(name, catLocation, whereToPetCat)` Here `name`, `catLocation`, and `whereToPetCat` are parameters. These are what the function expects to receive, of course Javascript has no typing so this looks ambiguous! How is some one suppose to know what type of data the variables are expecting? In typescript: `petCat(name: string, catLocation: string, whereToPetCat: string)` now its easier to see what this function expects when you want to use it.
 
 You can also use functions that produce values as expressions, say you have `isPetCute(petName)` and it returns true or false then you can say `if(isPetCute(petName))` and the if statement will react according to whatever value the `isPetCute` function returns. You can also do:
 ```javascript
@@ -119,6 +119,75 @@ You can also use functions that produce values as expressions, say you have `isP
 	let y = isPetCute; // You are now saying y contains the isPetCute function which means you can do...
 	let z = y("Curie"); // this would return true, meaning z = true. 
 ```
+When to use functions:
+- Always to be honest
+- Try to use functions as much as possible, if you're coding in a function and you've got like 30 lines of code (dosen't have to be 30 what ever you think makes your code look prettier and organized), you should probably make a function to put some of those lines of code in.
+- Say you have a bunch of items to process, then you should create a function whose job is to process those items. 
+	- This sounds similar to a loop but the difference is that for a function, you are building something that will manipulate data/do things for you so you don't have to keep writing the same code over and over. 
+		- a LOOP is for when you want to to go through many elements, if you have a bunch of items like in an array of: `[1,2,3,4,5,6,7,8,9,10]` and say you want to check every element in that array and determine if they are even or odd.  I'll show you first a bad example, then a better example, then a way better example on doing this.
+		-	```javascript;
+			let arr = [1,2,3,4,5,6,7,8,9,10]
+			if(arr[0] % 2 === 0){ // % means modulous, modulous gives you back the remainder of a divison. So 4/2 = 2, 4 % 2 = 0 (because there is no remainder, 2 divides 4 evenly, thus 4 % 2 = 0)
+								  // this is how you can check if numbers are even or odd.
+				console.log(true);
+			}
+			else {
+
+				console.log(false);
+			}
+			.... //skipping because im not going to type them all one by 1 lol.
+			....
+
+			if(arr[9] % 2 === 0 ){
+				console.log(true);
+			}
+			else {
+				console.log(false);
+			}
+			```
+			Imagine if I typed that if statement 10 times, that would be so redundant and a huge waste of time! What if you had 100 numbers to check, or even 1000??? All of our data in the array is of the same type, so they all will behave the same way. This means its perfect to use a function here, to automate it for us.
+
+			Here is a slightly better version.
+
+		-	```javascript
+			isEven(num) {
+				if(num % 2 === 0) {
+					return True;
+				} 
+				else {// protip: you don't have to put else here, because the "return" statement will exit the function.
+					  // if the number is Even the function will exit and return true, there is no need to put an else statement because we would never get to it.
+					  // If the number is odd then the if statement will be skipped, and we can simply return false. You don't need an else statement because, if the condition is true in this case
+					  // the function will exit this making whatever comes after, irrelevant. Hope that makes sense. 
+					return false;
+				}
+			}
+
+			// Now lets use our function to make this job easier.
+
+			let arr = [1,2,3,4,5,6,7,8,9,10];
+			console.log(isEven(arr[0])); // console.log will log whatever the isEven function returns.
+			console.log(isEven(arr[1]));
+			console.log(isEven(arr[2]));
+			console.log(isEven(arr[3]));
+			console.log(isEven(arr[4]));
+			console.log(isEven(arr[5]));
+			console.log(isEven(arr[6]));
+			console.log(isEven(arr[7]));
+			console.log(isEven(arr[8]));
+			console.log(isEven(arr[9]));
+			```
+			Isnt this code much cleaner than our first example? Although we could still do better here, lets try one more time using our best friend: loop. This time for the sake of saving my fingertips I won't rewrite the array and the isEven function just know that they are the same as the above examples.
+
+		-	```javascript
+			for(let i = 0; i < 10; i++) {
+				console.log(isEven(num));
+			}
+			```
+
+			and we're done, see how much the code shrunk?? Awesome stuff!   Remember functions are for automating repetitive work, and loops are for automatically going through lists, or anything that can be iterated through. 
+
+
+
 ## Control flow
 So code usually runs top to bottom. To make it branch and make the flow more flexible we use if statements and loops. 
 ### Conditionals
@@ -207,5 +276,3 @@ There are 5 types of loops you'll probably use. Also if you're ever tired of typ
 	- also explained later
 
 Keep in mind with the `break` command, that if you have nested loops it will  work only on its nearest loop. If it is in the inner-most loop then using `break;` will cancel the innermost loop. The parent loop of that loop will still run. But if you use `break;` on the parent loop then the parent loop will stop and that also means the child loop will not run. While the `continue` command will move you to the next iteration of your loop, its useful for when you found something you're looking for and don't care about the rest of your loop code, just go to the next iteration of the loop to continue looking for more. 
-
-
