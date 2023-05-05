@@ -125,7 +125,7 @@ When to use functions:
 - Say you have a bunch of items to process, then you should create a function whose job is to process those items. 
 	- This sounds similar to a loop but the difference is that for a function, you are building something that will manipulate data/do things for you so you don't have to keep writing the same code over and over. 
 		- a LOOP is for when you want to to go through many elements, if you have a bunch of items like in an array of: `[1,2,3,4,5,6,7,8,9,10]` and say you want to check every element in that array and determine if they are even or odd.  I'll show you first a bad example, then a better example, then a way better example on doing this.
-		-	```javascript;
+		-	```javascript
 			let arr = [1,2,3,4,5,6,7,8,9,10]
 			if(arr[0] % 2 === 0){ // % means modulous, modulous gives you back the remainder of a divison. So 4/2 = 2, 4 % 2 = 0 (because there is no remainder, 2 divides 4 evenly, thus 4 % 2 = 0)
 								  // this is how you can check if numbers are even or odd.
